@@ -2,9 +2,11 @@ package user;
 
 import user.model.User;
 
+import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+
 import java.util.List;
 
 import static javax.ws.rs.core.Response.noContent;
@@ -16,6 +18,7 @@ import static javax.ws.rs.core.Response.ok;
 public class UserController {
     private final UserService userService;
 
+    @Inject
     public UserController(UserService userService) {
         this.userService = userService;
     }
@@ -33,6 +36,6 @@ public class UserController {
     public Response addUser(User user) {
         userService.createUser(user);
 
-        return ok(user).build();
+        return ok().build();
     }
 }

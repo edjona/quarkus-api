@@ -1,23 +1,25 @@
 package user;
 
 import user.model.User;
+
 import javax.inject.Inject;
 import javax.inject.Singleton;
-import javax.persistence.EntityManager;
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Singleton
 public class UserService {
-    @Inject
-    EntityManager entityManager;
+    private final UserRepository userRepository;
 
-    public List<User> getUsers() {
-        return entityManager.createQuery("SELECT users FROM User users ", User.class).getResultList();
+    @Inject
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
-    @Transactional
     public void createUser(User user) {
-        entityManager.persist(user);
+        userRepository.createUser(user);
+    }
+
+    public List<User> getUsers() {
+        return userRepository.getUsers();
     }
 }
