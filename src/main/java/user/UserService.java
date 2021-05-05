@@ -1,7 +1,6 @@
 package user;
 
 import user.model.User;
-
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import javax.persistence.EntityManager;
