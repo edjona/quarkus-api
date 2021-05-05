@@ -1,12 +1,9 @@
 package user;
 
-import user.model.User;
-
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-
 import java.util.List;
 
 import static javax.ws.rs.core.Response.noContent;
@@ -24,7 +21,7 @@ public class UserController {
     }
 
     @GET
-    public Response getUser() {
+    public Response getUsers() {
         List<User> userList = userService.getUsers();
 
         if(userList.isEmpty()) return noContent().build();
@@ -33,9 +30,8 @@ public class UserController {
     }
 
     @POST
-    public Response addUser(User user) {
+    public Response createUser(User user) {
         userService.createUser(user);
-
         return ok().build();
     }
 }

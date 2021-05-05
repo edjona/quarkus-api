@@ -1,25 +1,17 @@
 package user;
 
-import user.model.User;
-
-import javax.inject.Inject;
 import javax.inject.Singleton;
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Singleton
 public class UserService {
-    private final UserRepository userRepository;
-
-    @Inject
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
-
-    public void createUser(User user) {
-        userRepository.createUser(user);
-    }
-
     public List<User> getUsers() {
-        return userRepository.getUsers();
+        return User.getUsers();
+    }
+
+    @Transactional
+    public void createUser(User user) {
+        user.persist();
     }
 }
