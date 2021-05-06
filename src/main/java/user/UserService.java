@@ -10,6 +10,10 @@ public class UserService {
         return User.getUsers();
     }
 
+    public User getUser(long id) {
+        return User.getUser(id);
+    }
+
     @Transactional
     public void createUser(User user) {
         user.persist();

@@ -27,6 +27,10 @@ public class User extends PanacheEntity {
 
     private String avatar;
 
+    public static User getUser(long id) {
+        return findById(id);
+    }
+
     public static List<User> getUsers() {
         return listAll();
     }

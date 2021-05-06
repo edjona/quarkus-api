@@ -3,6 +3,7 @@ package user;
 import io.vertx.core.json.JsonObject;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
+import parameter.UserParameter;
 import proxy.UserProxy;
 
 import javax.inject.Inject;
@@ -58,5 +59,10 @@ public class UserController {
     public Response createUser(User user) {
         userService.createUser(user);
         return ok().build();
+    }
+
+    @GET
+    public Response getUser(@BeanParam UserParameter user) {
+        return ok(userService.getUser(user.getId())).build();
     }
 }
